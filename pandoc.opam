@@ -1,0 +1,24 @@
+opam-version: "2.0"
+synopsis: "Pandoc prebuild command line on opam"
+description: "Pandoc prebuild command line on opam."
+maintainer: ["Corentin Leruth"]
+authors: ["Corentin Leruth"]
+license: "MIT"
+homepage: "https://github.com/tatchi/opam-pandoc-bin"
+doc: "https://github.com/tatchi/opam-pandoc-bin"
+bug-reports: "https://github.com/tatchi/opam-pandoc-bin/issues"
+dev-repo: "git+https://github.com/tatchi/opam-pandoc-bin.git"
+build: []
+install: [ 
+  "cp" 
+  "bin/pandoc-linux-arm64" {os = "linux" & arch = "arm64"}
+  "bin/pandoc-linux-x64" {os = "linux" & arch = "x86_64"}
+  "bin/pandoc-macos-x64" {os = "macos" & arch = "x86_64"}
+  "bin/pandoc-windows-x64.exe" {os = "windows" & arch = "x86_64"}
+  "%{bin}%/pandoc"
+]
+available: [
+  ( (os = "linux" & (arch = "x86_64" | arch = "arm64"))
+  | (os = "macos" & (arch = "x86_64"))
+  | (os = "windows" &  arch = "x86_64"))
+]
